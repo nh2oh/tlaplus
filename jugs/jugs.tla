@@ -1,12 +1,16 @@
 -------------------------------- MODULE jugs --------------------------------
-
-
+(***************************************************************************)
+(* From the Lamport TLA+ Course Lecture 4                                  *)
+(* Jugs example                                                            *)
+(* To see the procedure for filling the big jug w/ 4 gal, run with         *)
+(* deadlock detection and the invariant big /= 4                           *)
+(*                                                                         *)
+(***************************************************************************)
 EXTENDS Integers
 VARIABLES small, big
 
 TypeOK == /\ small \in 0..3
           /\ big \in 0..5
-
 
 Init == /\ small = 0
         /\ big = 0
@@ -37,36 +41,15 @@ BigToSmall == \/ /\ big + small <= 3
                  /\ small' = 3
                  /\ big' = big - (3-small)
 
-Next == \/ /\ small = 3
-           /\ big = 0
-        \/ /\ small = 0
-           /\ big = 5
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Next == \/ FillSmall
+        \/ FillBig
+        \/ EmptySmall
+        \/ EmptyBig
+        \/ SmallToBig
+        \/ BigToSmall
 
 
 =============================================================================
 \* Modification History
-\* Last modified Sun Jun 16 16:04:32 PDT 2024 by ben
+\* Last modified Sun Jun 23 09:52:43 PDT 2024 by ben
 \* Created Sun Jun 16 15:43:23 PDT 2024 by ben
