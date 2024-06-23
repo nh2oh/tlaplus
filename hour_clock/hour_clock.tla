@@ -1,4 +1,5 @@
 ----------------------------- MODULE hour_clock -----------------------------
+\* From Ch 2 of Specifying Systems (Lamport)
 EXTENDS Naturals
 VARIABLES hr
 
@@ -12,5 +13,5 @@ HC == HCinit /\ [][HCnext]_hr
 
 =============================================================================
 \* Modification History
-\* Last modified Sun Jun 23 10:12:05 PDT 2024 by ben
+\* Last modified Sun Jun 23 10:14:25 PDT 2024 by ben
 \* Created Sun Jun 23 10:08:32 PDT 2024 by ben
